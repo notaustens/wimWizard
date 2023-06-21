@@ -7,15 +7,15 @@ In order to create custom operating system images, you must first set up a folde
 
 ```
 cd c:\
-
 ```
+
 3. Create two folders; the first of which will act as a repository for the operating system install images (e.g., the `install.wim` file located in the sources folder of the target operating systems image file) and the second will act as the mount point for the images. This can be accomplished by entering the following commands in your terminal:
 
 ```
 mkdir .\iso
 mkdir .\mount
-
 ```
+
 # Step 2: Conduct Initial Investigation
 
 Now that we have a folder structure in place, we can begin the customization process by conducting a preliminary investigation of the target operating systems image file (`install.wim`).
@@ -24,13 +24,14 @@ Now that we have a folder structure in place, we can begin the customization pro
 
 ```
 copy .\exampleInstall.wim c:\iso
-
 ```
+
 2. Once you have copied the `install.wim` image file to the `c:\iso` directory, enter the following command in your command prompt to extract pertinent information (e.g., version index number, etc.) about the operating system image:
 
 ```
 DISM /Get-ImageInfo /imagefile:"C:\iso\exampleInstall.wim"
 ```
+
 # Step 3: Mount the Image
 
 If the previous command executed successfully, you should see a list of the various versions of Windows embedded in the `install.wim` image file. Each version will be denoted by an index number that can be used to mount that specific edition. 
@@ -40,7 +41,8 @@ If the previous command executed successfully, you should see a list of the vari
 ```
 DISM /Mount-image /imagefile:"C:\iso\exampleInstall.wim" /Index:1 /MountDir:"C:\mount" /optimize
 ```
-# Step 4: Windows Image File Investigation (Continued)
+
+# Step 4: Windows Image File Investigation
 
 DISM is extremely powerful and can be used to prune unnecessary or superseded core components from the operating system image. Specifically, you can add or remove drivers, applications, packages, updates, language packs, features, and more. This is advantageous for a number of reasons, but in particular it reduces the size of the operating systems image file in addition to reducing the attack surface of the operating system image itself. 
 
@@ -49,21 +51,25 @@ DISM is extremely powerful and can be used to prune unnecessary or superseded co
 ```
 DISM /Image:"C:\mount" /Get-ProvisionedAppxPackages /format:table > "C:\iso\appx.txt" 
 ```
+
 2. Next, create a list of the operating systems inherent capabilities by entering the following string in the command prompt:
 
 ```
 DISM /Image:"C:\mount" /Get-Capabilities /format:table > "C:\iso\capabilities.txt"
 ```
+
 3. As with the previous step, enter the following string in the command prompt to generate a list of the features that have been included in the operating system image: 
 
 ```
 DISM /Image:"C:\mount" /Get-Features /format:table > "c:\iso\features.txt"
 ```
+
 4. Last but not least, enter the following string into the command prompt to export a list of the packages that have been included in the operating system image:
 
 ```
 DISM /Image:"C:\mount" /Get-Packages /format:table > "c:\iso\packages.txt"
 ```
+
 # Step 5: Modify the Operating System Image
 
 Once the previous steps have been completed, you should see four new text files located in the "c:\iso" folder. These text files can be used to identify undesirable applications, features, packages, and capabilities that have been embedded in the edition of windows that you are working on.
@@ -76,8 +82,8 @@ From here it becomes a bit tedious (and could surely be automated or optimized),
 
 ```
 DISM /Image:"C:\mount" /Remove-ProvisionedAppxPackage /PackageName:<PackageName>
-
 ```
+
 2. Once the command executes successfully, repeat the process until all undesirable applications have been removed from the operating system image file.
 
 ## Remove Capabilities
