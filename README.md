@@ -16,7 +16,7 @@ mkdir .\iso
 mkdir .\mount
 ```
 
-# Step 2: Conduct Initial Investigation
+# Step 2: Initial Investigation
 
 Now that we have a folder structure in place, we can begin the customization process by conducting a preliminary investigation of the target operating systems image file (`install.wim`).
 
