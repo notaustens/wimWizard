@@ -1,4 +1,4 @@
-# Step 1: Prepare the Environment
+# Step 1: Environment Preparation
 
 In order to create custom operating system images, you must first set up a folder structure on your system to facilitate the process. This can be accomplished by following the steps outlined below:
 
