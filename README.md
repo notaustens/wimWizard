@@ -40,7 +40,7 @@ If the previous command executed successfully, you should see a list of the vari
 ```
 DISM /Mount-image /imagefile:"C:\iso\exampleInstall.wim" /Index:1 /MountDir:"C:\mount" /optimize
 ```
-# Step 4: Continue Operating System Image Investigation
+# Step 4: Windows Image File Investigation (Continued)
 
 DISM is extremely powerful and can be used to prune unnecessary or superseded core components from the operating system image. Specifically, you can add or remove drivers, applications, packages, updates, language packs, features, and more. This is advantageous for a number of reasons, but in particular it reduces the size of the operating systems image file in addition to reducing the attack surface of the operating system image itself. 
 
