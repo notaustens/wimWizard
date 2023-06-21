@@ -16,9 +16,9 @@ mkdir .\iso
 mkdir .\mount
 ```
 
-# Step 2: Initial Investigation
+# Step 2: Preliminary Investigation
 
-Now that we have a folder structure in place, we can begin the customization process by conducting a preliminary investigation of the target operating systems image file (`install.wim`).
+Now that we have a folder structure in place, we can begin the customization process by conducting an initial investigation of the Windows image file (`install.wim`).
 
 1. Copy the `install.wim` to the `.\iso` folder you created in the previous step. This can be accomplished manually via the File Explorer or through the command prompt by mounting (or extracting the contents of) the target operating systems image file (`.iso`), opening up a command prompt in that location, and entering in the following command:
 
