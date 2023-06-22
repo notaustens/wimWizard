@@ -32,7 +32,7 @@ copy .\exampleInstall.wim c:\iso
 DISM /Get-ImageInfo /imagefile:"C:\iso\exampleInstall.wim"
 ```
 
-# Step 3: Mount the Image
+# Step 3: Mount the Windows Image File
 
 If the previous command executed successfully, you should see a list of the various versions of Windows embedded in the `install.wim` image file. Each version will be denoted by an index number that can be used to mount that specific edition. 
 
@@ -42,7 +42,7 @@ If the previous command executed successfully, you should see a list of the vari
 DISM /Mount-image /imagefile:"C:\iso\exampleInstall.wim" /Index:1 /MountDir:"C:\mount" /optimize
 ```
 
-# Step 4: Windows Image File Investigation
+# Step 4: Investigate the Windows Image File
 
 DISM is extremely powerful and can be used to prune unnecessary or superseded core components from the operating system image. Specifically, you can add or remove drivers, applications, packages, updates, language packs, features, and more. This is advantageous for a number of reasons, but in particular it reduces the size of the operating systems image file in addition to reducing the attack surface of the operating system image itself. 
 
@@ -70,7 +70,7 @@ DISM /Image:"C:\mount" /Get-Features /format:table > "c:\iso\features.txt"
 DISM /Image:"C:\mount" /Get-Packages /format:table > "c:\iso\packages.txt"
 ```
 
-# Step 5: Modify the Operating System Image
+# Step 5: Modify the Windows Image File
 
 Once the previous steps have been completed, you should see four new text files located in the "c:\iso" folder. These text files can be used to identify undesirable applications, features, packages, and capabilities that have been embedded in the edition of windows that you are working on.
 
@@ -106,6 +106,6 @@ DISM /Image:"C:\mount" /Disable-Feature /FeatureName:<Feature Name>
 
 ## Remove Packages
 
-# Step 6: Optimize the Operating System Image & Commit Changes
+# Step 6: Optimize the Windows Image File & Commit Changes
 
 
