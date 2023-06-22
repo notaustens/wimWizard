@@ -88,9 +88,21 @@ DISM /Image:"C:\mount" /Remove-ProvisionedAppxPackage /PackageName:<PackageName>
 
 ## Remove Capabilities
 
+1. Open the capabilities.txt file that was created in Step 4 and use the "Capability Identity", in conjunction with the following command, to remove the capability from the Windows image file:
 
-## Remove Features
+```
+DISM /Image:"C:\mount" /Remove-Capability /CapabilityName:<Capability Identity>
+```
+2. Once the command executes successfully, repeat the process until all unnecessary capabilities have been removed from the Windows image file.
 
+## Disable Features
+
+1. Open the features.txt file that was created in Step 4 and use the "Feature Name", in conjunction with the following command, to disable the feature present in the Windows image file:
+
+```
+DISM /Image:"C:\mount" /Disable-Feature /FeatureName:<Feature Name>
+```
+2. Once the command executes successfully, repeat the process until all unnecessary features have been disabled on the Windows image file.
 
 ## Remove Packages
 
