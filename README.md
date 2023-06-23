@@ -2,7 +2,7 @@
 
 In order to create custom operating system images, you must first set up a folder structure on your system to facilitate the process. This can be accomplished by following the steps outlined below:
 
-1. Open up the command prompt as an administrator.
+1. Open up the command prompt (or PowerShell) as administrator.
 2. Navigate to the root of your `C:\` drive by entering the following command
 
 ```
@@ -39,7 +39,7 @@ If the previous command executed successfully, you should see a list of the vari
 1. Once you have identified the index number of the edition of Windows you need, enter the following command in your command prompt: **[source](https://learn.microsoft.com/en-us/windows-hardware/manufacture/desktop/mount-and-modify-a-windows-image-using-dism?source=recommendations&view=windows-11#apply-an-image)** 
 
 ```
-DISM /Mount-image /imagefile:"C:\iso\exampleInstall.wim" /Index:1 /MountDir:"C:\mount" /optimize
+DISM /Mount-image /imagefile:"C:\iso\exampleInstall.wim" /Index:<targetEditionsIndexNumber> /MountDir:"C:\mount" /optimize
 ```
 
 # Step 4: Investigate the Windows Image File
@@ -108,4 +108,20 @@ DISM /Image:"C:\mount" /Disable-Feature /FeatureName:<Feature Name>
 
 # Step 6: Optimize the Windows Image File & Commit Changes
 
+1. In the command prompt, enter the following command to cleanup the component base and optimize the Windows image file:
 
+```
+DISM /Image:"C:\mount\" /Cleanup-Image /StartComponentCleanup /ResetBase
+```
+
+2. Once the previous command executes successfully, enter the following string in the command prompt to commit all of the changes that were made in the previous steps and unmount the Windows image file:
+
+```
+DISM /Unmount-Image /MountDir:"C:\mount\" /Commit
+```
+
+3. Upon successful execution of the previous command (e.g., the Windows image file was successfully unmounted), enter the following string in the command prompt to export the modified edition of Windows to its own Windows image file:
+
+```
+DISM /Export-Image /SourceImageFile:"C:\iso\exampleInstall.wim" /Index:<targetEditionsIndexNumber> /DestinationImageFile:"C:\iso\modifiedInstall.wim"
+```
