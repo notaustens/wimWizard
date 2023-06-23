@@ -78,7 +78,7 @@ From here it becomes a bit tedious (and could surely be automated or optimized),
 
 ## Remove Applications
 
-1. Open the appx.txt file that was created in [Step 4](#step-4:-investigate-the-windows-image-file) and use the "PackageName", in conjunction with the following command, to remove the application from the operating system image file:
+1. Open the appx.txt file that was created in [Step 4](#step-4-investigate-the-windows-image-file) and use the "PackageName", in conjunction with the following command, to remove the application from the operating system image file:
 
 ```
 DISM /Image:"C:\mount" /Remove-ProvisionedAppxPackage /PackageName:<PackageName>
@@ -88,7 +88,7 @@ DISM /Image:"C:\mount" /Remove-ProvisionedAppxPackage /PackageName:<PackageName>
 
 ## Remove Capabilities
 
-1. Open the capabilities.txt file that was created in [Step 4](#step-4:-investigate-the-windows-image-file) and use the "Capability Identity", in conjunction with the following command, to remove the capability from the Windows image file:
+1. Open the capabilities.txt file that was created in [Step 4](#step-4-investigate-the-windows-image-file) and use the "Capability Identity", in conjunction with the following command, to remove the capability from the Windows image file:
 
 ```
 DISM /Image:"C:\mount" /Remove-Capability /CapabilityName:<Capability Identity>
@@ -97,7 +97,7 @@ DISM /Image:"C:\mount" /Remove-Capability /CapabilityName:<Capability Identity>
 
 ## Disable Features
 
-1. Open the features.txt file that was created in Step 4 and use the "Feature Name", in conjunction with the following command, to disable the feature present in the Windows image file:
+1. Open the features.txt file that was created in [Step 4](#step-4-investigate-the-windows-image-file) and use the "Feature Name", in conjunction with the following command, to disable the feature present in the Windows image file:
 
 ```
 DISM /Image:"C:\mount" /Disable-Feature /FeatureName:<Feature Name>
@@ -106,9 +106,17 @@ DISM /Image:"C:\mount" /Disable-Feature /FeatureName:<Feature Name>
 
 ## Remove Packages
 
-1. Open the packages.txt file that was created in [Step 4](#step-4:-investigate-the-windows-image-file)
+1. Open the packages.txt file that was created in [Step 4](#step-4-investigate-the-windows-image-file) and use the "Package Identity" of the package to be removed, in conjunction with the following command, to remove the package from the Windows image file:
+
+```
+DISM /Image:"C:\mount" /Remove-Package /PackageName:<Package Identity>
+```
+
+2. Once the command executes successfully, repeat the process until all undesirable packages have been removed on the Windows image file.
 
 # Step 6: Optimize the Windows Image File & Commit Changes
+
+At this point in the process, all that remains is to use DISM to reduce the footprint of the Windows image file by cleaning up superseded components, resetting the base of the superseeded components, and then exporting the image to a new image file.
 
 1. In the command prompt, enter the following command to cleanup the component base and optimize the Windows image file:
 
