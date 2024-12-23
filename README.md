@@ -133,5 +133,5 @@ DISM /Unmount-Image /MountDir:"C:\mount\" /Commit
 3. Upon successful execution of the previous command (e.g., the Windows image file was successfully unmounted), enter the following string in the command prompt to export the modified edition of Windows to its own Windows image file:
 
 ```
-DISM /Export-Image /SourceImageFile:"C:\iso\exampleInstall.wim" /Index:<targetEditionsIndexNumber> /DestinationImageFile:"C:\iso\modifiedInstall.wim"
+DISM /Export-Image /SourceImageFile:"C:\iso\exampleInstall.wim" /SourceIndex:<targetEditionsIndexNumber> /DestinationImageFile:"C:\iso\modifiedInstall.wim"
 ```
